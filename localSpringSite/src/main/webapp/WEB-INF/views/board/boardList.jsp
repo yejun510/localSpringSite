@@ -63,9 +63,11 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		
 		$(".order").click(function(){
 			var order_by = $(this).attr("data-value");
+			
 			console.log("선택값 : "+order_by);
 			
 			$("#order_by").val(order_by);
+			
 			if($("#order_sc").val()=='DESC'){
 				$("#order_sc").val('ASC');
 			}else{
@@ -130,7 +132,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		<div id="boardSearch">
 			<form id="f_search" name="f_search">
 		<input type="hidden" id="page" name="page" value="${data.page }">
-				<input type="hidden" id="page" name="page" value="1"/>
+				
 				<input type="hidden" id="order_by" name="order_by" value="${data.order_by }"/>
 				<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc }"/>
 				<table summary="검색">
@@ -184,7 +186,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 							</c:choose>
 					</th>
 					<th>글제목</th>
-					<th data-value="d_date" class="order">
+					<th data-value="b_date" class="order">
 					작성일
 						<c:choose>
 							<c:when test="${data.order_by=='b_date' and data.order_sc=='ASC' }">▲</c:when>
@@ -230,9 +232,9 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		</div>
 		<%-- ============= 글쓰기 버튼 출력 종료 ============= --%>
 		<%-- ============= 페이지 네비게이션 시작 ============ --%>
-		<%-- <div id="boardPage">
+		<div id="boardPage">
 			<tag:paging page="${param.page }" total="${total }" list_size="${data.pageSize }"/>
-		</div> --%>
+		</div>
 		<%-- ============= 페이지 네비게이션 종료 ============ --%>
 	</div>
 </body>

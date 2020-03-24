@@ -29,7 +29,7 @@
 			<![CDATA[b_title LIKE '%'||#{keyword}||'%']]>
 		</if>
 		<if test="search=='b_content'">
-			<![CDATA[b_centent LIKE '%'||#{keyword}||'%']]>
+			<![CDATA[b_content LIKE '%'||#{keyword}||'%']]>
 		</if>
 		<if test="search=='b_name'">
 			<![CDATA[b_name LIKE '%'||#{keyword}||'%']]>
