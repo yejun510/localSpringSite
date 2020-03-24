@@ -22,6 +22,8 @@
 			</if>
 		</where>
 	</sql>
+	<!-- 게시물 기본 조회 -->
+	<select id="boardlist" resultType="board">
 	<!-- 게시물 기본 조회(현재 사용하고 있는 쿼리문을 주석 처리 한다) -->
 	<!--  	<select id="boardList" resultType="board">
 		SELECT
