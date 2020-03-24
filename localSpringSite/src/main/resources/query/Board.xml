@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.spring.client.board.dao.BoardDao">
-
+	<sql id = "boardCommon">
+		SELECT b_num,b_name,b_title,b_date
+		FROM spring_board
+		<where>
+			<if test="search=='b_title'">
+				<![CDATA[ b_title LIKE '%'|| #{keyword}||'%']]>
+			</if>
+			<if test="search=='b_content'">
+				<![CDATA[ b_content LIKE '%'|| #{keyword}||'%']]>
+			</if>
+			<if test="search=='b_name'">
+				<![CDATA[ b_name LIKE '%'|| #{keyword}||'%']]>
+			</if>
+			<if test="search=='b_date'">
+				<![CDATA[ to_char(b_date,'YYYY-MM-DD') between
+				#{start_date} and #{end_date} ]]>
+			</if>
+		</where>
+	</sql>
+	<!-- 게시물 기본 조회 -->
+	<select id="boardlist" resultType="board">
+	<!-- 게시물 기본 조회(현재 사용하고 있는 쿼리문을 주석 처리 한다) -->
+	<!--  	<select id="boardList" resultType="board">
 		SELECT
 		b_num,
 		b_name,
@@ -12,7 +33,79 @@
 		FROM spring_board
 		ORDER BY b_num
 		desc
+	</select> -->
+
+	<!-- 게시물 검색 쿼리 분리 -->
+	<sql id="boardCommon">
+		SELECT
+			b_num,
+			b_name,
+			b_title,
+			b_date
+		FROM
+			spring_board
+	<where>
+		<if test="search=='b_title'">
+			<![CDATA[b_title LIKE '%'||#{keyword}||'%']]>
+		</if>
+		<if test="search=='b_content'">
+			<![CDATA[b_centent LIKE '%'||#{keyword}||'%']]>
+		</if>
+		<if test="search=='b_name'">
+			<![CDATA[b_name LIKE '%'||#{keyword}||'%']]>
+		</if>
+	</where>
+	</sql>
+
+	<select id="boardList" parameterType="board" resultType="board">
+		SELECT
+		b_num,
+		b_name,
+		b_title,
+		TO_CHAR(b_date,'YYYY-MM-DD HH:24:MI:SS') AS b_date
+		FROM
+		(SELECT list.*,ROWNUM AS RNUM
+			FROM(
+				<include refid="boardCommon"></include>
+					<choose>
+						<when test="order_by=='b_num'">
+							ORDER BY b_num
+						</when>
+						<when test="order_by=='b_date'">
+							ORDER BY b_date
+						</when>
+					</choose>
+					<choose>
+						<when test="order_sc=='ASC'">
+							ASC
+						</when>
+						<when test="order_sc=='DESC'">
+							DESC
+						</when>
+					</choose>
+					)list
+				)
+				<where>
+					<if test="start_row != null and start_row != ''">
+						<if test="end_row != null and end_row != ''">
+							RNUM BETWEEN #{start_row} AND #{end_row}
+						</if>
+					</if>
+				</where>
+	</select>	
+	<!-- 게시물 카운트 페이징 -->
+	<select id="boardListCnt" parameterType="board" resultType="int">
+		SELECT NVL(count(1),0)
+		FROM(
+			SELECT list.*,ROWNUM AS RNUM
+			FROM(
+				<include refid="boardCommon"></include>
+				ORDER BY b_num desc
+			)list
+		)
 	</select>
+
+
 
 	<!-- 상세 페이지를 위한 게시물 조회 -->
 	<select id="boardDetail" parameterType="int" resultType="board">
