@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>글 목록</title>
-<link rel="stylesheet" type="text/css" href="/resource/include/css/common.css"/>
-<link rel="stylesheet" type="text/css" href="/resource/include/css/board.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/include/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/include/css/board.css"/>
 
 <script type="text/javascript"
 src="/resources/include/js/jquery-1.12.4.min.js">
@@ -88,12 +88,15 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function () {
 			var b_num = $(this).parents("tr").attr("data-num");
+			
 			$("#b_num").val(b_num);
+			
 			console.log("글번호:"+b_num);
+			
 			//상세 페이지로 이동하기 위해 form추가 (id:detailForm)
 			$("#detailForm").attr({
 				"method":"get",
-				"action:":"/board/boardDetail.do"
+				"action":"/board/boardDetail.do"
 			});
 			$("#detailForm").submit();
 		});
@@ -227,9 +230,9 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		</div>
 		<%-- ============= 글쓰기 버튼 출력 종료 ============= --%>
 		<%-- ============= 페이지 네비게이션 시작 ============ --%>
-		<div id="boardPage">
+		<%-- <div id="boardPage">
 			<tag:paging page="${param.page }" total="${total }" list_size="${data.pageSize }"/>
-		</div>
+		</div> --%>
 		<%-- ============= 페이지 네비게이션 종료 ============ --%>
 	</div>
 </body>
