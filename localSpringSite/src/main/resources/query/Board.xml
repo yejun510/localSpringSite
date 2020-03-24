@@ -93,8 +93,7 @@
 						</if>
 					</if>
 				</where>
-	</select>
-		
+	</select>	
 	<!-- 게시물 카운트 페이징 -->
 	<select id="boardListCnt" parameterType="board" resultType="int">
 		SELECT NVL(count(1),0)
