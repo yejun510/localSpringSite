@@ -22,7 +22,7 @@
 			else if(!chkSubmit($('#b_pwd'),"비밀번호를")) return;
 			else{
 				$("#f_writeForm").attr({
-					"method":"POPST",
+					"method":"POST",
 					"action":"/board/boardInsert.do"
 				});
 				$("#f_writeForm").submit();

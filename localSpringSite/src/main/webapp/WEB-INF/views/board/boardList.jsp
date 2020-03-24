@@ -75,7 +75,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		});
 		
 		/* 한 페이지에 보여줄 레코드 수 변경될 때마다 처리 이벤트 */
-		$("#pageSize").chage(function(){
+		$("#pageSize").change(function(){
 			goPage(1);
 		});
 		

@@ -42,7 +42,7 @@
 		b_num,
 		b_name,
 		b_title,
-		TO_CHAR(b_date,'YYYY-MM-DD HH:24:MI:SS') AS b_date
+		TO_CHAR(b_date,'YYYY-MM-DD HH24:MI:SS') AS b_date
 		FROM
 		(SELECT list.*,ROWNUM AS RNUM
 			FROM(
@@ -89,12 +89,14 @@
 		/* Board - boardDetail */
 		SELECT
 		b_num,
+		b_name,
 		b_title,
 		b_content,
 		TO_CHAR(b_date,'YYYY-MM-DD HH24:MI:SS')AS b_date
 		FROM spring_board
 		WHERE b_num =#{b_num}
 	</select>
+	
 	<!-- 게시물 등록 -->
 	<insert id="boardInsert" parameterType="board">
 		/*Board - boardInsert */
@@ -128,6 +130,7 @@
 			WHERE b_num =#{b_num}
 			AND b_pwd =#{b_pwd}
 		),0)as state
+		from dual
 	</select>
 	<!-- 게시물 수정 -->
 	<update id="boardUpdate" parameterType="board">
@@ -136,7 +139,7 @@
 			SET b_title =#{b_title},
 				b_content =#{b_content},
 				b_date =sysdate
-				<if test="b_pwd !=">
+				<if test="b_pwd !=''">
 				,b_pwd =#{b_pwd}
 				</if>
 			WHERE b_num =#{b_num}
