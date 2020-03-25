@@ -12,7 +12,7 @@
 <script type="text/javascript"
 src="/resources/include/js/jquery-1.12.4.min.js">
 </script>
-<script type="text/javascript" src="/resource/include/js/common.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	var butChk = 0; //수정버튼과 삭제버튼을 구별하귀 위한 변수
 	$(function () {
@@ -34,7 +34,11 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		});
 		/* 비밀번호 확인 버튼 클릭 시 처리 이벤트 */
 		$("#pwdBtn").click(function () {
-			location.htrf="/board/boardList/do";
+			boardPwdConfirm();
+		});
+		/* 목록 버튼 클릭 시 처리 이벤트 */
+		$("#boardListBtn").click(function(){
+			location.href="/board/boardList.do";
 		});
 	});
 	/*비밀번호 확인 버튼 클릭시 실질적인 처리 함수 */
@@ -60,7 +64,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 					if(butChk == 1){
 						goUrl = "/board/updateForm.do";
 					}else if(butChk == 2){
-						goUrl = "/board/BoardDelete.do";
+						goUrl = "/board/boardDelete.do";
 					}
 					$("#f_data").attr("action",goUrl);
 					$("#f_data").submit();
@@ -85,7 +89,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 						<form name="f_pwd" id="f_pwd">
 							<input type="hidden" name="b_num" id="b_num"
 							value="${detail.b_num}"/>
-							<label for="b_pwd" id="b_pwd">비밀번호:</label>
+							<label for="b_pwd" id="l_pwd">비밀번호:</label>
 							<input type="password" name="b_pwd" id="b_pwd"/>
 							<input type="button" id="pwdBtn" value="확인"/>
 							<span id="msg"></span>
@@ -112,7 +116,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 				<tbody>
 					<tr>
 						<td class="ac">작성자</td>
-						<td>${delete.b_name}</td>
+						<td>${detail.b_name}</td>
 						<td class="ac">작성일</td>
 						<td>${detail.b_date}</td>
 					</tr>

@@ -24,6 +24,12 @@
 			<type>int</type>
 		</attribute>
 		<attribute>
+			<name>list_size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
 			<name>page_size</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>

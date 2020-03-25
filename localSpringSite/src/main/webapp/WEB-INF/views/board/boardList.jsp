@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>글 목록</title>
-<link rel="stylesheet" type="text/css" href="/resource/include/css/common.css"/>
-<link rel="stylesheet" type="text/css" href="/resource/include/css/board.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/include/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/include/css/board.css"/>
 
 <script type="text/javascript"
 src="/resources/include/js/jquery-1.12.4.min.js">
@@ -63,9 +63,11 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		
 		$(".order").click(function(){
 			var order_by = $(this).attr("data-value");
+			
 			console.log("선택값 : "+order_by);
 			
 			$("#order_by").val(order_by);
+			
 			if($("#order_sc").val()=='DESC'){
 				$("#order_sc").val('ASC');
 			}else{
@@ -75,7 +77,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		});
 		
 		/* 한 페이지에 보여줄 레코드 수 변경될 때마다 처리 이벤트 */
-		$("#pageSize").chage(function(){
+		$("#pageSize").change(function(){
 			goPage(1);
 		});
 		
@@ -88,12 +90,15 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function () {
 			var b_num = $(this).parents("tr").attr("data-num");
+			
 			$("#b_num").val(b_num);
+			
 			console.log("글번호:"+b_num);
+			
 			//상세 페이지로 이동하기 위해 form추가 (id:detailForm)
 			$("#detailForm").attr({
 				"method":"get",
-				"action:":"/board/boardDetail.do"
+				"action":"/board/boardDetail.do"
 			});
 			$("#detailForm").submit();
 		});
@@ -127,7 +132,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 		<div id="boardSearch">
 			<form id="f_search" name="f_search">
 		<input type="hidden" id="page" name="page" value="${data.page }">
-				<input type="hidden" id="page" name="page" value="1"/>
+				
 				<input type="hidden" id="order_by" name="order_by" value="${data.order_by }"/>
 				<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc }"/>
 				<table summary="검색">
@@ -181,7 +186,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 							</c:choose>
 					</th>
 					<th>글제목</th>
-					<th data-value="d_date" class="order">
+					<th data-value="b_date" class="order">
 					작성일
 						<c:choose>
 							<c:when test="${data.order_by=='b_date' and data.order_sc=='ASC' }">▲</c:when>
