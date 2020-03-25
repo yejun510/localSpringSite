@@ -77,7 +77,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 </head>
 <body>
 	<div class="contentContainer">
-		<div class="cententTit"><h3>게시판 상세보기</h3></div>
+		<div class="contentTit"><h3>게시판 상세보기</h3></div>
 		<form name="f_data" id="f_data" method="POST">
 			<input type="hidden" name="b_num" value="${detail.b_num}"/>
 		</form>
