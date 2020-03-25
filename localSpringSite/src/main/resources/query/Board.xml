@@ -73,7 +73,7 @@
 					</if>
 				</where>
 	</select>
-	<!-- 게시물 카운트 페이징 -->
+	<!-- 게시물 전체 개수 -->
 	<select id="boardListCnt" parameterType="board" resultType="int">
 		SELECT NVL(count(1),0)
 		FROM(
@@ -92,6 +92,7 @@
 		b_name,
 		b_title,
 		b_content,
+		b_file,
 		TO_CHAR(b_date,'YYYY-MM-DD HH24:MI:SS')AS b_date
 		FROM spring_board
 		WHERE b_num =#{b_num}
@@ -110,6 +111,9 @@
 				b_name,
 				b_title,
 				b_content,
+				<if test="b_file != null and b_file !=''">
+				b_file,
+				</if>
 				b_pwd
 			)
 			VALUES(
@@ -117,6 +121,9 @@
 				#{b_name},
 				#{b_title},
 				#{b_content},
+				<if test="b_file != null and b_file != ''">
+				#{b_file},
+				</if>
 				#{b_pwd}
 			)
 	</insert>
@@ -138,7 +145,10 @@
 		UPDATE spring_board
 			SET b_title =#{b_title},
 				b_content =#{b_content},
-				b_date =sysdate
+				b_date =sysdate,
+				<if test="b_file != ''">
+				b_file = #{b_file}
+				</if>
 				<if test="b_pwd !=''">
 				,b_pwd =#{b_pwd}
 				</if>
