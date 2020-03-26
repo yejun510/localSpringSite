@@ -6,6 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.client.login.dao.LoginDao;
 import com.spring.client.login.vo.LoginVO;
+import com.spring.client.member.dao.MemberDao;
+import com.spring.client.member.vo.MemberSecurity;
+import com.spring.common.util.OpenCrypt;
 
 @Service
 @Transactional
