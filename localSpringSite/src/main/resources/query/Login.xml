@@ -16,7 +16,7 @@
 
 	<select id="loginSelect" parameterType="login"
 		resultType="login">
-		/* 로그인 처리 쿼리 */
+		<!-- /* 로그인 처리 쿼리 */ -->
 		select
 		userId,
 		userPw,
@@ -27,12 +27,10 @@
 
 	<insert id="loginHistoryInsert" parameterType="login">
 		insert into
-		login_history(
-		idx, userId, retry, lastFailedLogin, lastSuccessedLogin,
-		clientIP)
-		values(
-		login_history_seq.nextval,#{userId},
-		#{retry,jdbcType=INTEGER},
+		login_history(idx, userId, retry, lastFailedLogin, lastSuccessedLogin,clientIP)
+		values(login_history_seq.nextval,
+		#{userId},
+		#{retry, jdbcType=INTEGER},
 		#{lastFailedLogin,jdbcType=INTEGER},
 		#{lastSuccessedLogin,jdbcType=INTEGER},
 		#{clientIP,jdbcType=VARCHAR}
@@ -41,7 +39,7 @@
 
 	<update id="loginHistoryUpdate" parameterType="login">
 		update login_history
-		set rety = #{retry},
+		set retry = #{retry},
 		lastFailedLogin =#{lastFailedLogin},
 		lastSuccessedLogin = #{lastSuccessedLogin},
 		clientIP = #{clientIP,jdbcType=VARCHAR}

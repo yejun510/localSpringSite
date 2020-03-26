@@ -23,7 +23,7 @@ src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	function errCodeCheck() {
 		var errCode ='<c:out value="${errCode}"/>';
-		if(errCOde != ''){
+		if(errCode != ''){
 			switch(parseInt(errCode)){
 			case 1:
 				alert("이미 가입된 회원입니다!");
@@ -40,7 +40,7 @@ src="/resources/include/js/jquery-1.12.4.min.js"></script>
 	<div class="contentContainer">
 		<div class="well">
 			<form id="memberForm" class="form-horizontal">
-				<input type="hidden" name="email" id="eamil"/>
+				<input type="hidden" name="email" id="email"/>
 				<input type="hidden" name="pinno" id="pinno"/>
 				<div class="form-group form-group-sm">
 					<label for="userId"

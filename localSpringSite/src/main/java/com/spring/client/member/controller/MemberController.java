@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,13 +43,20 @@ public class MemberController {
 	 ******************************************************/
 	@ResponseBody
 	@RequestMapping(value = "/userIdConfirm.do", method = RequestMethod.POST)
+	public String userIdConfirm(@RequestParam("userId") String userId) {
+		int result = memberService.userIdConfirm(userId);
+			return result+"";
+	}
+	
+	//회원 가입 처리
+	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public ModelAndView memberInsert(@ModelAttribute MemberVO mvo) {
 		log.info("join.do post 방식에 의한 메서드 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
 		int result = 0;
 		result = memberService.memberInsert(mvo);
-
+		System.out.println(result);
 		switch (result) {
 		case 1:
 			mav.addObject("errCode", 1); // userId already exist

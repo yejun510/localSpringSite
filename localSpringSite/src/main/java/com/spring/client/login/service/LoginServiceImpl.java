@@ -36,7 +36,7 @@ public class LoginServiceImpl implements LoginService {
 			lvo.setUserId(userId);
 			lvo.setUserPw(userPw);
 			
-			vo = loginDao.loginSelect(vo);
+			vo = loginDao.loginSelect(lvo);
 		}
 		return vo;
 	}

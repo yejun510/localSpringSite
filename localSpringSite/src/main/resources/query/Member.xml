@@ -1,63 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.client.member.dao.MemberDao">
-	<select id="securitySelect" parameterType="String" resultType="security">
-		SELECT
-			userId, salt
-		FROM
-			security
-		WHERE
-			userId=#{userId}
+	<select id="securitySelect" parameterType="String"  resultType="security">
+		select userid, salt from security 
+		where userId=#{userId}
 	</select>
 	
 	<insert id="securityInsert" parameterType="security">
-		INSERT into
-			security(userId, salt)
-		VALUES(#{userId), #{salt})
+		insert into security(userid, salt) 
+		values(#{userId}, #{salt}) 
 	</insert>
-	
-	<delete id="memberDelete" parameterType="String">
-		DELETE from
-			security
-		WHERE userId = #{userId}
+
+	<delete id="securityDelete" parameterType="String">
+		delete from security where userId = #{userId}
 	</delete>
 	
 	<select id="memberSelect" parameterType="String" resultType="member">
-	SELECT
-		idx, userId, userPw, userName, pinno, email, phone
-	FROM
-		spring_member
-	WHERE
-		userId = #{userId}
+		select idx, userid, userpw, username, pinno, email, phone 
+		from spring_member
+		where userid = #{userId}
 	</select>
 	
 	<insert id="memberInsert" parameterType="member">
 		/* member - memberInsert */
 		<selectKey keyProperty="idx" resultType="int" order="BEFORE">
-			SELECT
-				spring_member_seq.nextval
-			FROM
-				dual
+			select spring_member_seq.nextval from dual
 		</selectKey>
-		INSERT into
-			spring_member(idx, userid, userpw, username, pinno, email, phone)
-		VALUES(#{idx}, #{userId}, #{userPw}, #{userName}, #{pinno}, #{email}, #{phone})
+		insert into spring_member(idx, userid, userpw, username, pinno, email, phone)
+		values(#{idx}, #{userId}, #{userPw}, #{userName}, #{pinno}, #{email}, #{phone})
 	</insert>
 	
 	<update id="memberUpdate" parameterType="member">
-		UPDATE
-			spring_member set
+		update spring_member set 
 		<if test="userPw != null and userPw != ''">
-			userPw = #{userPw},
+			userPw=#{userPw}, 
 		</if>
-			phone = #{phone}, email = #{email}
-		WHERE
-			userId = #{userId}
-	</update>
+			phone=#{phone}, email=#{email} 
+		where userId=#{userId}
+	</update>	
 	
 	<delete id="memberDelete" parameterType="String">
-		DELETE from
-			spring_member where userId = #{userId}
-	</delete>
+		delete from spring_member where userId = #{userId}
+	</delete>	
 </mapper>
