@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.client.board.dao.BoardDao;
+import com.spring.client.board.vo.BoardVO;
+import com.spring.common.page.Paging;
+
 @Service
 @Transactional
 public class AdminBoardServiceImpl implements AdminBoardService{
@@ -22,7 +26,7 @@ public class AdminBoardServiceImpl implements AdminBoardService{
 		
 		// 정렬에 대한 기본값 설정
 		if(bvo.getOrder_by()==null) bvo.setOrder_by("b_num");
-		if(bvo.getOrder_sc()==null) bvo.setOrder_se("DESC");
+		if(bvo.getOrder_sc()==null) bvo.setOrder_sc("DESC");
 		
 		if(!bvo.getKeyword().equals("")) {
 			bvo.setStart_date("");

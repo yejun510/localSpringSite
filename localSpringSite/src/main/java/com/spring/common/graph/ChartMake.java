@@ -20,6 +20,8 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.spring.common.file.FileUploadUtil;
+
 public class ChartMake {
 	private static Logger log = LoggerFactory.getLogger(ChartMake.class);
 
