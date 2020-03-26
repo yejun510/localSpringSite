@@ -15,12 +15,12 @@
 
 	<!-- 갤러리 등록 -->
 	<insert id="galleryInsert" parameterType="gallery">
-		/ *gallery - galleryInsert */
+		/* gallery - galleryInsert */
 		<selectKey keyProperty="g_num" resultType="int"
 			order="BEFORE">
 			select spring_gallery_seq.nextval from dual
 		</selectKey>
-		insert into spring_gallery(g_num,g_num,g_subject,g_content,
+		insert into spring_gallery(g_num,g_name,g_subject,g_content,
 		g_thumb,g_file,g_pwd)
 		values(#{g_num},#{g_name},#{g_subject},#{g_content}, #{g_thumb},#{g_file},#{g_pwd})
 	</insert>

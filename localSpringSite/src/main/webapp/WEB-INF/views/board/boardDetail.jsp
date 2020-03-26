@@ -42,6 +42,30 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 			.css("color","#000099");
 			butChk = 2;
 		});
+		
+		/* 삭제 버튼 클릭 시 처리 이벤트 */
+		$("#boardDeleteBtn").click(function(){
+			$.ajax({
+				url : "/board/replyCnt.do",
+				type : "post",
+				data : "b_num="+$("#b_num").val(),
+				dataType : "text",
+				error : function(){
+					alert('시스템 오류 입니다. 관리자에게 문의 하세요');
+				},
+				success : function(resultData){
+					if(resultData==0){
+						$("#pwdChk").show();
+				$("#msg").text("작성시 입력한 비밀번호를 입력해 주세요.").css("color","#000099");
+							butChk=2;
+					}else{
+						alert("댓글 존재시 게시물을 삭제할 수가 없습니다.\n 댓글 삭제 후 다시 확인해 주세요.");
+						return;
+					}
+				}
+			});
+		});
+		
 		/* 비밀번호 확인 버튼 클릭 시 처리 이벤트 */
 		$("#pwdBtn").click(function () {
 			boardPwdConfirm();
