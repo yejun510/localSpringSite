@@ -23,16 +23,16 @@
 		var b_num = "<c:out value='${detail.b_num}'/>";
 		listAll(b_num)
 		/** 덧글 내용 저장 이벤트 */
-		$("replyInsert").click(function() {
+		$("#replyInsert").click(function() {
 			// 작성자 이름에 대한 입력여부 검사
-			if (!chkData("r_name", "이름을 "))
+			if (!chkData("#r_name", "이름을 "))
 				return;
 			else if (!chkData("#r_pwd", "비밀번호를"))
 				return;
 			else if (!chkData("#r_content", "내용을"))
 				return;
 			else {
-				var insertUrl = "replies/replyInsert.do";
+				var insertUrl = "/replies/replyInsert.do";
 				/** 글 저장을 위한 Post 방식의 AJax 연동 처리 */
 				$.ajax({
 					url : insertUrl, //전송 url
@@ -44,9 +44,9 @@
 					dataType : "text",
 					data : JSON.stringify({
 						b_num : b_num,
-						r_name : ("#r_name").val(),
-						r_pwd : ("#r_pwd").val(),
-						r_content : ("#r_content").val()
+						r_name : $("#r_name").val(),
+						r_pwd : $("#r_pwd").val(),
+						r_content : $("#r_content").val()
 					}),
 					error : function() {
 						alert('시스템 오류입니다. 관리자에게 문의하세요.');
@@ -100,8 +100,8 @@
 		});
 
 		/** 글 수정을 위한 Ajax 연동 처리 */
-		$(document).on("click", ",update_btn", function() {
-			var r_num = $(this).parent("li").attr("data-num");
+		$(document).on("click", ".update_btn", function() {
+			var r_num = $(this).parents("li").attr("data-num");
 			var r_content = $("#content").val();
 			if (!chkData("#content", "댓글 내용을"))
 				return;
@@ -123,13 +123,14 @@
 							alert("수정 되었습니다.");
 							listAll(b_num);
 							pwdConfirm = 0;
+							
 						}
 					}
 				});
 			}
 		});
 		/** 글 삭제를 위한 Ajax 연동 처리 */
-		$(document).on("click", ".delete_btn" function() {
+		$(document).on("click", ".delete_btn", function() {
 			$(".reset_btn").click();
 			var currLi = $(this).parents("li")
 			replyNum = currLi.attr("data-num");
@@ -181,7 +182,7 @@
 			var r_msg = form.find(".r_msg");
 			
 			var up = $(this).parents("li").find(".update_form");
-			var del = $(this).parent("li").find(".delete_btn");
+			var del = $(this).parents("li").find(".delete_btn");
 			
 			if(!formCheck(pwd, r_msg, "비밀번호를")) return;
 			else {
@@ -230,7 +231,7 @@
 	}
 	//리스트 요청 함수
 	function listAll(b_num) {
-		$("#conment_list").html("");
+		$("#comment_list").html("");
 		var url = "/replies/all/" +b_num+".do";
 		$.getJSON(url,function(data){
 			console.log(data.length);
@@ -239,7 +240,7 @@
 				var r_num = this.r_num;
 				var r_name = this.r_name;
 				var r_content = this.r_content;
-				var r_datae = this r_date;
+				var r_date = this.r_date;
 				addNewItem(r_num,r_name,r_content,r_date);
 			});
 		}).fail(function() {
@@ -247,11 +248,11 @@
 		});
 	}
 	/** 새로운 글을 화면에 추가하기 위한 함수 */
-	function addNewItem(r_num, r_namem ,r_content, r_date) {
+	function addNewItem(r_num, r_name ,r_content, r_date) {
 		//새로운 글이 추가될 li태그 객체
 		var new_li = $("<li>");
 		new_li.attr("data-num",r_num);
-		new_li.addclass("comment_item");	
+		new_li.addClass("comment_item");	
 	
 		//작성자 정보가 지정될 <p>태그
 		var writer_p = $("<p>");
@@ -274,6 +275,7 @@
 		//삭제하기 버튼
 		var del_input = $("<input>");
 		del_input.attr({"type":"button","value":"삭제하기"});
+		del_input.addClass("delete_btn");
 		
 		//내용
 		var content_p = $("<p>");
@@ -281,13 +283,13 @@
 		content_p.html(r_content);
 		
 		//조립하기
-		writer_p.append(name_span).append(datae_span).append(up_input).append(del_input)
+		writer_p.append(name_span).append(date_span).append(up_input).append(del_input)
 		new_li.append(writer_p).append(content_p);
 		$("#comment_list").append(new_li);
 		
 	}
 	
-	function deataReset() {
+	function dataReset() {
 		$("#r_name").val("");
 		$("#r_pwd").val("");
 		$("#r_content").val("");

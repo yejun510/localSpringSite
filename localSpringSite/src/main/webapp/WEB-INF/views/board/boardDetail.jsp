@@ -153,6 +153,8 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 			</table>
 		</div>
 		<%-- ==================== 상세 정보 보여주기 종료 ==================== --%>
+		<jsp:include page="reply.jsp"></jsp:include>
+		
 	</div>
 </body>
 </html>

@@ -22,6 +22,9 @@ import com.spring.common.file.FileUploadUtil;
 import com.spring.common.page.Paging;
 import com.spring.common.util.Util;
 
+import lombok.extern.java.Log;
+
+@Log
 @Controller
 @RequestMapping(value = "/board")
 public class BoardContoller {
@@ -226,14 +229,13 @@ public class BoardContoller {
 	 * @param int
 	 ****************************************/
 
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/replyCnt.do") public String
-	 * replyCnt(@RequestParam("b_num") int b_num) { log.info("replyCnt 호출 성공");
-	 * 
-	 * int result = 0; result = boardService.replyCnt(b_num); return result + ""; }
-	 */
+	
+	  @ResponseBody
+	  @RequestMapping(value = "/replyCnt.do")
+	  public String replyCnt(@RequestParam("b_num") int b_num) { log.info("replyCnt 호출 성공");
+	  
+	  int result = 0; result = boardService.replyCnt(b_num); return result + ""; }
+	 
 }
 
 
