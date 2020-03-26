@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.admin.board.service.AdminBoardService;
+import com.spring.client.board.vo.BoardVO;
 import com.spring.common.excel.ListExcelView;
 
 @Controller
@@ -35,7 +36,7 @@ public class AdminBoardController {
 		int total = adminBoardService.boardListCnt(bvo);
 		log.info("total = " + total);
 
-		List<BoardVO> boardlist = adminBoardService.boardlist(bvo);
+		List<BoardVO> boardlist = adminBoardService.boardList(bvo);
 
 		model.addAttribute("boardList", boardlist);
 		model.addAttribute("total", total);

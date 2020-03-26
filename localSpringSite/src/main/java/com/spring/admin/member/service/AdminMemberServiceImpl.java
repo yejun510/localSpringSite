@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.admin.member.dao.AdminMemberDao;
+import com.spring.client.member.vo.MemberVO;
+
 @Service
 @Transactional
 public class AdminMemberServiceImpl implements AdminMemberService{
@@ -15,7 +18,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	private AdminMemberDao adminMemberDao;
 	
 	@Override
-	public List<MemberVO> memberList(MemberVO bvo) {
+	public List<MemberVO> memberList(MemberVO mvo) {
 		List<MemberVO> mList = null;
 		mList = adminMemberDao.memberList(mvo);
 		return mList;
