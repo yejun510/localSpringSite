@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.client.board.service.BoardService;
 import com.spring.client.board.vo.BoardVO;
+import com.spring.common.file.FileUploadUtil;
 import com.spring.common.page.Paging;
 import com.spring.common.util.Util;
 
+import lombok.extern.java.Log;
+
+@Log
 @Controller
 @RequestMapping(value = "/board")
 public class BoardContoller {
@@ -169,7 +173,7 @@ public class BoardContoller {
 		
 		int result = 0;
 		String url = "";
-		String b_fill="";
+		String b_file="";
 		
 		if(!bvo.getFile().isEmpty()) {
 			log.info("======== file = " +bvo.getFile().getOriginalFilename());
@@ -225,15 +229,13 @@ public class BoardContoller {
 	 * @param int
 	 ****************************************/
 
-	@ResponseBody
-	@RequestMapping(value = "/replyCnt.do")
-	public String replyCnt(@RequestParam("b_num") int b_num) {
-		log.info("replyCnt 호출 성공");
-
-		int result = 0;
-		result = boardService.replyCnt(b_num);
-		return result + "";
-	}
+	
+	  @ResponseBody
+	  @RequestMapping(value = "/replyCnt.do")
+	  public String replyCnt(@RequestParam("b_num") int b_num) { log.info("replyCnt 호출 성공");
+	  
+	  int result = 0; result = boardService.replyCnt(b_num); return result + ""; }
+	 
 }
 
 

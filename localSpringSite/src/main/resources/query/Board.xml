@@ -145,9 +145,9 @@
 		UPDATE spring_board
 			SET b_title =#{b_title},
 				b_content =#{b_content},
-				b_date =sysdate,
+				b_date =sysdate
 				<if test="b_file != ''">
-				b_file = #{b_file}
+				,b_file = #{b_file}
 				</if>
 				<if test="b_pwd !=''">
 				,b_pwd =#{b_pwd}

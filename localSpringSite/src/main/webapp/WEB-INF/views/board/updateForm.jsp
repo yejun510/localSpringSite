@@ -45,6 +45,7 @@
 			}
 		});
 		
+		
 		/*목록 버튼 클릭 시 처리 이벤트*/
 		$("#boardListBtn").click(function(){
 			location.href="/board/boardList.do";
@@ -112,7 +113,7 @@
 		
 		<div class="contentBtn">
 			<input type="button" value="수정" id="boardUpdateBtn">
-			<input type="button" value="목록" id="boarListBtn">
+			<input type="button" value="목록" id="boardListBtn">
 		</div>
 	</div>
 </body>

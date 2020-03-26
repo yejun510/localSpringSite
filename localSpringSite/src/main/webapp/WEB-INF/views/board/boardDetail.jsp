@@ -93,7 +93,7 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 			<input type="hidden" name="page" id="page" value="${param.page}"/>
 			<input type="hidden" name="pageSize" id="pageSize"
 			value="${param.pageSize}"/>
-			<input type="text" name="b_file" id="b_file" value="${detail.b_file}"/>
+			<input type="hidden" name="b_file" id="b_file" value="${detail.b_file}"/>
 		</form>
 		<%-- ==================== 비밀번호 확인 버튼 및 버튼 추가 시작 ==================== --%>
 		<table id="boardPwdBut">
@@ -153,6 +153,8 @@ src="/resources/include/js/jquery-1.12.4.min.js">
 			</table>
 		</div>
 		<%-- ==================== 상세 정보 보여주기 종료 ==================== --%>
+		<jsp:include page="reply.jsp"></jsp:include>
+		
 	</div>
 </body>
 </html>
