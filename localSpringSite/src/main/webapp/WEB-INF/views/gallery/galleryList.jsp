@@ -57,6 +57,7 @@
 														alert('시스템 오류 입니다. 관리자에게 문의 하세요');
 													},
 													success : function(data) {
+														alert(data);
 														console.log(data);
 														//alert(data);
 														if (data == "성공") {
@@ -180,7 +181,7 @@
 		con.addClass("form-control-static");
 		con.html(g_content);
 
-		body.append(thumb_img_aria.append(lightbox_a.append(thumb_img)));
+		body.append(thumb_img_area.append(lightbox_a.append(thumb_img)));
 		body.append(date).append(con);
 
 		panel.append(panel_heading.append(panel_title.append(title)));

@@ -13,7 +13,14 @@ public class GalleryVO extends CommonVO {
 	private String g_file;
 	private String g_pwd;
 	private String g_date;
+	private String g_content;
 	
+	public String getG_content() {
+		return g_content;
+	}
+	public void setG_content(String g_content) {
+		this.g_content = g_content;
+	}
 	public int getG_num() {
 		return g_num;
 	}

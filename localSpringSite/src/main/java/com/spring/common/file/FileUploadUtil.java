@@ -68,7 +68,7 @@ public class FileUploadUtil {
 		String dirName = fileName.substring(0, fileName.indexOf("_"));
 		//이미지가 존재하는 폴더 추출
 		String imgPath
-		= request.getSession().getServletContext().getRealPath("/uploadStorage"+dirName);
+		= request.getSession().getServletContext().getRealPath("/uploadStorage/"+dirName);
 		//추출된 폴더의 실제 경로 (물리적 위치: C:\...)
 		File fileAdd = new File(imgPath,fileName);
 		log.info("원본 이미지 파일(fileAdd):"+fileAdd);
